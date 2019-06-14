@@ -1,7 +1,7 @@
 import requests
 from cfg import vcode
 from pprint import pprint
-
+from robot.libraries.BuiltIn import BuiltIn
 
 class Courselib:
     Curl="http://ci.ytesting.com/api/3school/school_classes"
@@ -39,7 +39,7 @@ class Courselib:
     # name	必填	指明添加班级的名称。
     # 长度范围为 1 - 20 个字符	比如：实验1班
     # studentlimit	必填	指明班级学生的人数上限	比如：80"""
-    def addclass(self,grade,name,studentlimit):
+    def addclass(self,grade,name,studentlimit,idSavedName=None):
         payload={
             'vcode':vcode,
             'action':'add',
@@ -50,6 +50,10 @@ class Courselib:
         request=requests.post(self.Curl,data=payload)
         redir=request.json()
         pprint (redir,indent=2)
+        if idSavedName:
+            print('before')
+            BuiltIn().set_global_variable('${%s}' % idSavedName, redir['id'])
+            print(f"global var set: ${idSavedName}:{redir['id']}")
         return redir
 
     #删除班级
@@ -98,5 +102,6 @@ class Courselib:
 
 if __name__ == '__main__':
     scm = Courselib()
-    ret = scm.listclass(1)
+    # ret = scm.listclass(1)
+    scm.delete_allclass
     # addclass(1,'高一班级',20)
