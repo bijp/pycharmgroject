@@ -16,5 +16,5 @@ Library    pylib.Courselib
     should be true    $fc['studentlimit']==58
     should be true    $fc['name']=='实验1班'
 
-    [Teardown]    deleterclass   $ret1[id]
+    [Teardown]    deleterclass   &{ret1}[id]
 

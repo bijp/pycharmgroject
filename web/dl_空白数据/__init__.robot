@@ -1,3 +1,4 @@
 *** Settings ***
 Library    pylib.Courselib
-Suite Setup   delete_allclass
+Library    pylib.Teacherlib
+Suite Setup   Run Keywords  delete_allclass   AND   delete_allteacher

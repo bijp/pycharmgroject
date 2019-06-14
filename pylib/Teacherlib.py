@@ -75,7 +75,7 @@ class Teacherlib:
             raise Exception('cannot list teachers!!')
         # 删除列出
         for one in list['retlist']:
-            self.deleterclass(one['id'])
+            self.deleterteacher(one['id'])
         # 再删除所有
         list = self.listteacher()
         pprint(list, indent=2)
@@ -113,3 +113,4 @@ class Teacherlib:
 if __name__ == '__main__':
     scm = Teacherlib()
     ret = scm.listteacher()
+    scm.delete_allteacher()
