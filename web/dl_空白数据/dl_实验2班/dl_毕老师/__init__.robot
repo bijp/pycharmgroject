@@ -7,8 +7,8 @@ Suite Teardown    deleterppp
 *** Keywords ***
 addppp
     ${pt01}=      listclass  1
-    ${pt02}=    evaluate    $pt['retlist'][0]
-    ${suite_math_teacher_id}=     evaluate    $pt1['id']
+    ${pt02}=    evaluate    $pt01['retlist'][0]
+    ${suite_math_teacher_id}=     evaluate    $pt02['id']
     #列出老师
     listteacher
     ${add1}=     addteacher   ppp       毕老师    ${g_subject_math_id}   ${suite_math_teacher_id}    18302045312   323333@qq.com    540522221536511585
