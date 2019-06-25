@@ -106,3 +106,4 @@ if __name__ == '__main__':
     # scm.delete_allclass
     # addclass(1,'高一班级',20)
     scm.deleterclass(1)
+    scm.delete_allclass()

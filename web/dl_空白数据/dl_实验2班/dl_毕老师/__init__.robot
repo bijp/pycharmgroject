@@ -3,7 +3,7 @@ Library   pylib.Teacherlib
 Library    pylib.Courselib
 Variables  cfg.py
 Suite Setup       addppp
-Suite Teardown    deleterppp
+Suite Teardown    deleteppp
 *** Keywords ***
 addppp
     ${pt01}=      listclass  1
@@ -13,7 +13,7 @@ addppp
     listteacher
     ${add1}=     addteacher   ppp       毕老师    ${g_subject_math_id}   ${suite_math_teacher_id}    18302045312   323333@qq.com    540522221536511585
 
-deleterppp
+deleteppp
     ${listea01}=       listteacher
     log to console   ${listea01}
     ${tes02}=     evaluate  $listea01['retlist'][0]

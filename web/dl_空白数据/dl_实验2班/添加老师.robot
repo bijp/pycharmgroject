@@ -4,7 +4,7 @@ Library    pylib.Courselib
 Variables  cfg.py
 *** Test Cases ***
 添加老师1_tc001001
-    delete_allteacher
+#    delete_allteacher
     ${pt}=      listclass  1
 #    log to console  ${pt}
     ${pt1}=    evaluate    $pt['retlist'][0]
