@@ -12,3 +12,6 @@ g_subject_math_id    = 1
 完成用例（tc000001-tc000003）的自动化
 
 可以在当天课程代码(spj01.zip) 的基础上完成"""
+#web的登录的网址
+g_teacher_login_url='http://ci.ytesting.com/teacher/login/login.html'
+g_student_login_url='http://ci.ytesting.com/student/login/login.html'
