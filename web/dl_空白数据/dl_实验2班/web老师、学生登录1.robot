@@ -2,8 +2,9 @@
 Library   pylib.Teacherlib
 Library    pylib.Courselib
 Variables  cfg.py
-Resource    robotlib/rc.robot
+#Resource    robotlib/rc.robot
 Library     pylib.keylib
+Library    pylib.Studentlib
 #Suite Setup         open_browser2
 #Suite Teardown      close_browser2
 
@@ -44,8 +45,6 @@ Library     pylib.keylib
     ${classstudent}=    get_teacher_class_students_info
     should be true   $classstudent=={'七年级初中数学': []}
      close_browser2
-
-
     deleterteacher   ${pt3}
 
     [Teardown]    deleterclass  ${pt2}
@@ -59,4 +58,26 @@ Library     pylib.keylib
 # 2. 登录成功，进入学生首页，其中 学校、姓名 、已完成微课、已完成作业 的信息正确
 #
 #3. 显示 “您尚未有错题入库哦”
-#学生登录1_tc005081
+学生登录1_tc005081
+    #列出班级
+    ${pt01}=      listclass  1
+    ${pt02}=    evaluate    $pt01['retlist'][0]
+    ${suite_classid}=     evaluate    $pt02['id']
+    #列出学生
+    list_students
+    #添加学生李，学校验证码、指明操作、登录名、真实姓名、年级ID号、班级ID号、电话号码
+    ${stuadd}=     addstudent       lixue01     学生李生      1    ${suite_classid}   182222222654
+    open_browser2
+    student_login       lixue01     888888
+    ${sthome}=      get_student_homepage_info
+    ${sthomelist}=      create list     学生李生   松勤学院00543       0    0
+    should be equal     ${sthome}           ${sthomelist}
+    ${stwrong}=     get_student_wrongquestions
+#    log to console   ${stwrong}
+
+    should be equal     ${stwrong}       您尚未有错题入库哦
+    ${stlixue}=     list_students
+    ${pt03}=    evaluate    $stlixue['retlist'][0]
+    ${st_classid}=     evaluate    $pt03['id']
+    [Teardown]  deletestudent  ${st_classid}
+
